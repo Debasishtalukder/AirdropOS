@@ -1,0 +1,6 @@
+{
+  "name": "AirdropOS",
+  "description": "A full-stack airdrop project manager dashboard built with React and Supabase. Features project tracking, task management, resource links, and a clean minimalist UI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
