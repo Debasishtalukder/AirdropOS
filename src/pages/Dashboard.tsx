@@ -138,7 +138,23 @@ export default function Dashboard() {
                 No projects yet.
               </div>
             ) : myProjects.map(project => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                onRemove={(id) => {
+                  setMyProjects(prev => prev.filter(p => p.id !== id));
+                  setStats(prev => ({
+                    ...prev,
+                    totalProjects: prev.totalProjects - 1,
+                    activeProjects: project.status === 'Active' ? prev.activeProjects - 1 : prev.activeProjects,
+                  }));
+                  setProjectProgress(prev => prev.filter(p => p.name !== project.name));
+                }}
+                onUpdate={(updated) => {
+                  setMyProjects(prev => prev.map(p => p.id === updated.id ? { ...p, ...updated } : p));
+                  setProjectProgress(prev => prev.map(p => p.name === project.name ? { ...p, name: updated.name } : p));
+                }}
+              />
             ))}
           </div>
         </div>
